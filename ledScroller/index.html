@@ -1,15 +1,25 @@
-<!-- LED Scroller (développé par @noodom)
-	inspiré par https://codepen.io/timkim/pen/EajvGw 
+<!-- LED Scroller de type cadre pour Jeedom et Nextdom
+		développé par @noodom
+		inspiré par https://codepen.io/timkim/pen/EajvGw 
 	
-	- Recopier le code dans un text/html dans un Design
-	- Modifier les paramètres au niveau de // *** Paramètres à modifier ***********
+	Principe de fonctionnement
+		- Le cadre affiche un message sous forme de leds
+		- L'intérêt est que le texte est lié à une commande info (d'un virtuel ou d'un équipement)
+		- Lorsque la valeur de la commande change (automatiquemet ou sur intervention utilisateur), le texte du led scroller se met à jour automatiquement
+
+	Installation :
+		- Recopier ce code dans un text/html dans un Design
+		- Paramètres à modifier au niveau de // *** Paramètres à modifier ***********
+			- cmdId // /!\ IMPORTANT A MODIFIER ABSOLUMENT : Id d'une commande info existante contenant le texte à afficher
+			- ledColor // Couleur des leds allumées (texte)
+			- marqueeBackgroundColor // Couleur des leds éteintes (fond)
 -->
 
 <style>
     :root {
         --marquee-width : 420px;
 		--marquee-height : 55px;
-		--marquee-background : #121212
+		--marquee-background : #121212;
 		--led-color: #0ff;
     }
 
@@ -54,7 +64,7 @@
 	}
 </style>
 
-<div id="wrapper">
+<div id="wrapper" class="cmd">
 	<div id="theMarquee">
 		<div class="0_0 light off"></div>
 		<div class="0_1 light off"></div>
@@ -483,12 +493,12 @@
 
 	// *************************************
   	// *** Paramètres à modifier ***********
-  	// Texte à afficher
-	var cmdId = 8794;
+  	// Id de la commande info contenant le texte à afficher
+	var cmdId = 8795;
     // Couleur des leds
-  	var ledColor = '#f00';
+  	var ledColor = '#0ff';
     //Couleur de fond de la marquee
-  	var marqueeBackgroundColor = '#0f0';
+  	var marqueeBackgroundColor = '#121212';
 	// *** Fin des paramètres à modifier ***
 	// *************************************
   
@@ -514,6 +524,7 @@
     document.documentElement.style.setProperty('--led-color', ledColor);
 
 	function changeText(newText) {
+	  console.log("==> change");
 	  clearLights();
 	  myMessage = textToLED(newText);
 	  furthestLeftPoint = 0 - myMessage.length;
@@ -540,12 +551,14 @@
 	function drawMessage(messageArray, leftPointer) {
 	  var messageLength = messageArray.length;
 	  var totalScrollLength = SCROLLER_LENGTH + messageLength;
+	  console.log("==> 1.drawMessage:totalScrollLength : " + totalScrollLength);
 
 	  if (messageLength > 0) {
 
 		for (var col = 0; col < messageLength; col++) {
 		  for (var row = 0; row < HEIGHT; row++) {
 			var offsetCol = leftPointer + col;
+	  		//console.log("==> 2.drawMessage:offsetCol : " + offsetCol);
 
 			if (offsetCol < SCROLLER_LENGTH || offsetCol >= 0) {
 			  setLight(row, offsetCol, messageArray[col][row]);
@@ -558,6 +571,7 @@
 	}
 
 	function textToLED(theWord) {
+	  console.log("==> textToLED");
 	  var theMessage = [];
 	  theWord = theWord.toUpperCase();
 	  for (var i = 0; i < theWord.length; i++) {
@@ -763,8 +777,12 @@
 	}
 
 
+	var ledTimeout = null;
+	
 	function draw() {
-	  setTimeout(function () {
+	  console.log("==> draw");
+	  clearTimeout(ledTimeout);
+	  ledTimeout = setTimeout(function () {
 		requestAnimationFrame(draw);
 
 		if (leftPointer == furthestLeftPoint) {
@@ -776,7 +794,9 @@
 
 	  }, 1000 / fps);
 	}
-
+	
+	$('#wrapper')[0].setAttribute('data-cmd_id', cmdId);
+	
 	jeedom.cmd.update[cmdId] = function(_options){
 		jeedom.cmd.execute({ // Récupération de la valeur  
 			id: cmdId,
@@ -787,6 +807,6 @@
 		});   
 	};
 
-jeedom.cmd.update[cmdId]();
+	jeedom.cmd.update[cmdId]();
 </script>
 

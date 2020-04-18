@@ -1,0 +1,23 @@
+# Cadre led Scroller
+
+![](doc/images/ledScroller.png)
+
+## Installation du cadre
+
+- Depuis un design, suivez les étapes suivantes :
+	- Clic droit, Sélectionnez 'Edition'
+	- Clic droit, puis sélectionnez 'Ajouter text/html'
+	- Clic droit sur le text/html créé et sélectionnez 'Paramètres d'affichage'
+	- Dans la zone 'Texte', collez le contenu du fichier du cadre à récupérer sous /jeedom_cadres/ledScroller/index.html
+	- Parcourir le contenu du texte et modifiez le paramétrage pour chaque cadre en fonction de vos choix de configuration (à partir de la ligne // *** Paramètres à modifier ***********)
+	
+	
+## Paramétrage du cadre
+
+![](doc/images/cmdInfo.png)
+
+		- Paramètres à modifier au niveau de // *** Paramètres à modifier ***********
+			- cmdId // /!\ IMPORTANT A MODIFIER ABSOLUMENT : Id d'une commande info existante contenant le texte à afficher
+			- ledColor // Couleur des leds allumées (texte)
+			- marqueeBackgroundColor // Couleur des leds éteintes (fond)
+	

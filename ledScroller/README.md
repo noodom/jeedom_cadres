@@ -17,7 +17,8 @@ Attention : un seul cadre par design pour un bon fonctionnement
 ## Paramétrage du cadre
 
 		- Récupérer l'id de la commande info contenant le texte à faire défiler
-		![](doc/images/cmdInfo.png)
+
+![](doc/images/cmdInfo.png)
 
 		- Paramètres à modifier au niveau de // *** Paramètres à modifier ***********
 			- cmdId : /!\ IMPORTANT A MODIFIER ABSOLUMENT : Id d'une commande info existante contenant le texte à afficher

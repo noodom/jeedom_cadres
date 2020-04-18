@@ -4,6 +4,8 @@
 
 ## Installation du cadre
 
+Attention : un seul cadre par design pour un bon fonctionnement
+
 - Depuis un design, suivez les étapes suivantes :
 	- Clic droit, Sélectionnez 'Edition'
 	- Clic droit, puis sélectionnez 'Ajouter text/html'
@@ -18,7 +20,7 @@
 		![](doc/images/cmdInfo.png)
 
 		- Paramètres à modifier au niveau de // *** Paramètres à modifier ***********
-			- cmdId // /!\ IMPORTANT A MODIFIER ABSOLUMENT : Id d'une commande info existante contenant le texte à afficher
-			- ledColor // Couleur des leds allumées (texte)
-			- marqueeBackgroundColor // Couleur des leds éteintes (fond)
+			- cmdId : /!\ IMPORTANT A MODIFIER ABSOLUMENT : Id d'une commande info existante contenant le texte à afficher
+			- ledColor : Couleur des leds allumées (texte)
+			- marqueeBackgroundColor : Couleur des leds éteintes (fond)
 	

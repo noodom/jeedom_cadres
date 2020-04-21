@@ -25,3 +25,9 @@ Attention : un seul cadre par design pour un bon fonctionnement
 			- ledColor : Couleur des leds allumées (texte)
 			- marqueeBackgroundColor : Couleur des leds éteintes (fond)
 	
+			- Le texte de la commande info peut contenir les caractères suivants :
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890°#|'€"/%[]()-*+=?!:,.
+			- Ce champ texte peut être modifié par scénario avec la commande event : 
+				la mise à jour du texte sera alors immédiate sur le design
+
+![](doc/images/scenarioEvent.png)

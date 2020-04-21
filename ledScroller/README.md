@@ -30,4 +30,4 @@ Attention : un seul cadre par design pour un bon fonctionnement
 			- Ce champ texte peut être modifié par scénario avec la commande event : 
 				la mise à jour du texte sera alors immédiate sur le design
 
-![](doc/images/scenarioEvent.png)
+![](doc/images/scenarioEvent.jpg)
